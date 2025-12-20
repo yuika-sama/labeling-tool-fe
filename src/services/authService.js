@@ -3,18 +3,26 @@ import api from './api';
 export const authService = {
   // Đăng ký
   register: async (userData) => {
-    const response = await api.post('/auth/register', userData);
-    return response.data;
+    try {
+      const response = await api.post('/auth/register', userData);
+      return response.data;
+    } catch (error) {
+      throw new Error(error.message || 'Đăng ký thất bại');
+    }
   },
 
   // Đăng nhập
   login: async (credentials) => {
-    const response = await api.post('/auth/login', credentials);
-    if (response.data.token) {
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
+    try {
+      const response = await api.post('/auth/login', credentials);
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+      }
+      return response.data;
+    } catch (error) {
+      throw new Error(error.message || 'Đăng nhập thất bại');
     }
-    return response.data;
   },
 
   // Đăng xuất
@@ -25,8 +33,12 @@ export const authService = {
 
   // Lấy thông tin user hiện tại
   getCurrentUser: async () => {
-    const response = await api.get('/auth/me');
-    return response.data.user;
+    try {
+      const response = await api.get('/auth/me');
+      return response.data.user;
+    } catch (error) {
+      throw new Error(error.message || 'Không thể lấy thông tin user');
+    }
   },
 
   // Kiểm tra đã đăng nhập

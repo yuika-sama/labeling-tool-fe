@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -27,13 +27,25 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    // Convert axios error to standard Error object to avoid React error #31
+    const message = error.response?.data?.error || error.response?.data?.message || error.message || 'An error occurred';
+    const statusCode = error.response?.status;
+    
+    // Create proper Error object
+    const err = new Error(message);
+    err.statusCode = statusCode;
+    err.response = error.response;
+    
+    if (statusCode === 401) {
       // Token expired or invalid
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      window.location.href = '/login';
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
     }
-    return Promise.reject(error);
+    
+    return Promise.reject(err);
   }
 );
 

@@ -45,7 +45,8 @@ const Register = () => {
       });
       navigate('/datasets');
     } catch (err) {
-      setError(err.response?.data?.error || 'Đăng ký thất bại');
+      console.error('Register error:', err);
+      setError(err.message || 'Đăng ký thất bại. Vui lòng thử lại.');
     } finally {
       setLoading(false);
     }

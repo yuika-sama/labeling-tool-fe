@@ -28,7 +28,8 @@ const Login = () => {
       await login(formData);
       navigate('/datasets');
     } catch (err) {
-      setError(err.response?.data?.error || 'Đăng nhập thất bại');
+      console.error('Login error:', err);
+      setError(err.message || 'Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.');
     } finally {
       setLoading(false);
     }
