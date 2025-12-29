@@ -27,11 +27,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Convert axios error to standard Error object to avoid React error #31
     const message = error.response?.data?.error || error.response?.data?.message || error.message || 'An error occurred';
     const statusCode = error.response?.status;
     
-    // Create proper Error object
     const err = new Error(message);
     err.statusCode = statusCode;
     err.response = error.response;

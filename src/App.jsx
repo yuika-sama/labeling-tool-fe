@@ -111,7 +111,7 @@ function App() {
                   }
                 />
 
-                {/* Legacy routes (optional - giữ lại nếu muốn dùng local mode) */}
+                {/* Legacy routes */}
                 <Route
                   path="/local/step1"
                   element={

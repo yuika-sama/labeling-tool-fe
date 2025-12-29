@@ -6,16 +6,13 @@ const ProjectContext = createContext();
 export const useProject = () => useContext(ProjectContext);
 
 export const ProjectProvider = ({ children }) => {
-  // State cho Trang 1
   const [config, setConfig] = useState({
     fileType: 'image', // image, video, audio, csv
-    templateQuestions: [], // Các câu hỏi mẫu định nghĩa ở trang 1
+    templateQuestions: [], // Các câu hỏi mẫu định nghĩa
   });
 
-  // State cho Trang 2 (Danh sách các item đã upload và gán nhãn)
   const [dataItems, setDataItems] = useState([]);
 
-  // Hàm reset hoặc cập nhật config
   const updateConfig = (newConfig) => {
     setConfig((prev) => ({ ...prev, ...newConfig }));
   };
@@ -38,7 +35,7 @@ export const ProjectProvider = ({ children }) => {
         config,
         updateConfig,
         dataItems,
-        setDataItems, // Cần dùng để reset hoặc set lại
+        setDataItems,
         addDataItems,
         updateDataItem,
       }}

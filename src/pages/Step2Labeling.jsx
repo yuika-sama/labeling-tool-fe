@@ -1,4 +1,4 @@
-// src/pages/Step2Labeling.jsx
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProject } from '../context/ProjectContext';
@@ -57,7 +57,7 @@ const Step2Labeling = () => {
     updateDataItem(itemId, { questions: updatedQuestions });
   };
 
-  // Sửa nội dung câu hỏi (đề bài yêu cầu chỉnh sửa câu hỏi)
+  // Sửa nội dung câu hỏi
   const handleQuestionTextChange = (itemId, questionId, newText) => {
     const item = dataItems.find(i => i.id === itemId);
     const updatedQuestions = item.questions.map(q => 

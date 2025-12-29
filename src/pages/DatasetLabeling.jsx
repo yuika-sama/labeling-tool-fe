@@ -57,7 +57,6 @@ const DatasetLabeling = () => {
     try {
       const answersToSubmit = [];
 
-      // Gom TẤT CẢ answers từ TẤT CẢ files
       if (dataset.dataset_files && dataset.dataset_files.length > 0) {
         dataset.dataset_files.forEach((file) => {
           dataset.questions.forEach((question) => {
@@ -74,7 +73,6 @@ const DatasetLabeling = () => {
           });
         });
       } else {
-        // Nếu không có file, submit answers không có file_id
         dataset.questions.forEach((question) => {
           const key = `no-file_${question.id}`;
           const answerValue = answers[key];

@@ -7,7 +7,7 @@ export const answerService = {
     return response.data;
   },
 
-  // Submit nhiều câu trả lời (sử dụng submissions)
+  // Submit nhiều câu trả lời
   submitBatch: async (data) => {
     // data có cấu trúc: { dataset_id, answers: [...] }
     const response = await api.post('/answers/batch', data);
