@@ -3,6 +3,7 @@
 Tool gán nhãn dữ liệu với phân quyền Admin/User, lưu trữ trên Supabase, và backend API riêng biệt.
 
 ### Dùng thử
+- URL: https://labeling-tool-fe.vercel.app/
 - Tài khoản Admin
   - Email: admin@gmail.com
   - Mật khẩu: 123456
